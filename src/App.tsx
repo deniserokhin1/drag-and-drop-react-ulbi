@@ -9,7 +9,6 @@ const App: FC = () => {
     { id: 3, order: 2, text: "КАРТОЧКА 2" },
     { id: 4, order: 4, text: "КАРТОЧКА 4" },
   ] as ICard[]);
-  console.log(carddList);
   const [currentCard, setCurrentCard] = useState({} as ICard);
 
   const dragStartHandler = (e: DragEvent<HTMLDivElement>, card: ICard) => {
