@@ -1,0 +1,21 @@
+.wrapper {
+  height: 95vh;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  font-size: 30px;
+}
+
+.container {
+  width: 800px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed blue;
+  border-radius: 8px;
+  font-family: sans-serif;
+  font-size: 30px;
+}

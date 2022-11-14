@@ -8,11 +8,7 @@ const Board = () => {
   const [currentBoard, setCurrentBoard] = useState({} as IBoard);
   const [currentItem, setCurrentItem] = useState({} as IItem);
 
-  const dragStartHandler = (
-    e: React.DragEvent<HTMLDivElement>,
-    board: IBoard,
-    item: IItem
-  ) => {
+  const dragStartHandler = (board: IBoard, item: IItem) => {
     setCurrentBoard(board);
     setCurrentItem(item);
   };
@@ -58,18 +54,15 @@ const Board = () => {
         if (b.id === board.id) {
           return board;
         }
-        // if (b.id === currentBoard.id) {
-        //   return currentBoard;
-        // }
+        if (b.id === currentBoard.id) {
+          return currentBoard;
+        }
         return b;
       })
     );
   };
 
-  const dropCardHandler = (
-    e: React.DragEvent<HTMLDivElement>,
-    board: IBoard
-  ) => {
+  const dropCardHandler = (board: IBoard) => {
     const currentIndex = currentBoard.items.indexOf(currentItem);
     currentBoard.items.splice(currentIndex, 1);
     board.items.push(currentItem);
@@ -91,14 +84,14 @@ const Board = () => {
       {boards.map((board) => (
         <div
           onDragOver={dragOverHandler}
-          onDrop={(e) => dropCardHandler(e, board)}
+          onDrop={(e) => dropCardHandler(board)}
           className="board"
           key={board.id}
         >
           <div className="board__title">{board.title}</div>
           {board.items.map((item) => (
             <div
-              onDragStart={(e) => dragStartHandler(e, board, item)}
+              onDragStart={() => dragStartHandler(board, item)}
               onDragEnd={(e) => dragEndHandler(e)}
               onDragOver={(e) => dragOverHandler(e)}
               onDragLeave={dragLeaveHandler}
